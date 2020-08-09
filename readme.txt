@@ -4,8 +4,7 @@
 This package can be used to 
 - efficiently calculate average burst duration profiles from envelope time series. This is done with fast C code.
 - infer envelope models from envelope time series using the passage method. Both the drift function and the noise standard deviation are inferred.
-For more details, see B. Duchet, at al., 2020, “Average beta burst duration profiles provide a signature of dynamical changes between the ON and OFF medication states
-in Parkinson’s disease”, bioRxiv, doi:10.1101/2020.04.27.064246.
+For more details, see B. Duchet, at al., 2020, “Average beta burst duration profiles provide a signature of dynamical changes between the ON and OFF medication states in Parkinson’s disease”, bioRxiv, doi:10.1101/2020.04.27.064246.
 *************************************************
 *** Run the script avgBurstDurTest.m to test average burst duration profile extraction from the synthetic data provided.
 
