@@ -6,11 +6,11 @@ clearvars
 addpath(genpath(['.' filesep 'modules']))
 
 %%% Parameters
-toTest          = 'ou'; %choose from 'ou','deg2','deg3','deg4','deg5'
+toTest          = 'deg5'; %choose from 'ou','deg2','deg3','deg4','deg5'
 dt_infer        = 1E-3; %should be adapted to the roughness of the envelope
 %                        use ~0.05 for the envelope of filtered LFP at beta frequency,
 %                        0.001 for the synthetic test data provided (if using synthDat.(toTest).env directly)
-pctToUse        = 50; %how much of the data given in env should be used for inference (give 50 for 50%)
+pctToUse        = 100; %how much of the data given in env should be used for inference (give 50 for 50%)
 plotDataMu      = true; %set to false if no groud truth is available for the data drift function (e.g. with patient data)
 showActualZeta  = true; %same as above for the value of the noise standard deviation
 runZetaOptim    = true; %run an optimisation to estimate the noise standard deviation,
