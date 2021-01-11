@@ -7,12 +7,7 @@ void fwdSim(double minr, double maxr, double dr, int nr, double *rdot, double si
         double dt, double *randr, double *r, double *theta)
 {
     /*  Euler method */
-    
-//     mxArray *Arg[1];
-//     Arg[0] = mxCreateString("starting in fwdSim c function");
-//     mexCallMATLAB(0, NULL, 1, Arg, "myLogging_c");
-//     _sleep(2000);
-    
+        
     mwSize i;
     double maxRdot = rdot[(mwSize) nr-1];
     double minRdot = rdot[0];
@@ -34,76 +29,11 @@ void fwdSim(double minr, double maxr, double dr, int nr, double *rdot, double si
             double dri = r[i] - (minr + I*dr);
             vField = rdot[I] + dri * (rdot[I+1]-rdot[I])/dr;
         }
-        
-//         mxArray *Arg[1];
-//         Arg[0] = mxCreateString("vField");
-//         mexCallMATLAB(0, NULL, 1, Arg, "myLogging_c");
-//         
-//         char c[50]; //size of the number
-//         sprintf(c, "%g", vField);
-//         mxArray *Arg2[1];
-//         Arg2[0] = mxCreateString(c);
-//         mexCallMATLAB(0, NULL, 1, Arg2, "myLogging_c");
-//         
-//         mxArray *Arg3[1];
-//         Arg3[0] = mxCreateString("randr");
-//         mexCallMATLAB(0, NULL, 1, Arg3, "myLogging_c");
-//         
-//         
-//         char c2[50]; //size of the number
-//         sprintf(c2, "%g", randr[i+1]);
-//         mxArray *Arg4[1];
-//         Arg4[0] = mxCreateString(c2);
-//         mexCallMATLAB(0, NULL, 1, Arg4, "myLogging_c");
-//         
-//         mxArray *Arg7[1];
-//         Arg7[0] = mxCreateString("sigma");
-//         mexCallMATLAB(0, NULL, 1, Arg7, "myLogging_c");
-//         char c4[50]; //size of the number
-//         sprintf(c4, "%g", sigma);
-//         mxArray *Arg5[1];
-//         Arg5[0] = mxCreateString(c4);
-//         mexCallMATLAB(0, NULL, 1, Arg5, "myLogging_c");
-//         
-//         mxArray *Arg8[1];
-//         Arg8[0] = mxCreateString("dt");
-//         mexCallMATLAB(0, NULL, 1, Arg8, "myLogging_c");
-//         char c5[50]; //size of the number
-//         sprintf(c5, "%g", dt);
-//         mxArray *Arg9[1];
-//         Arg9[0] = mxCreateString(c5);
-//         mexCallMATLAB(0, NULL, 1, Arg9, "myLogging_c");
-        
-        r[i+1] = r[i] + vField*dt + sigma*sqrt(dt)*randr[i];
-        
-//         mxArray *Arg10[1];
-//         Arg10[0] = mxCreateString("r[i+1] before abs");
-//         mexCallMATLAB(0, NULL, 1, Arg10, "myLogging_c");
-//         char c6[50]; //size of the number
-//         sprintf(c6, "%g", r[i+1]);
-//         mxArray *Arg11[1];
-//         Arg11[0] = mxCreateString(c6);
-//         mexCallMATLAB(0, NULL, 1, Arg11, "myLogging_c");
-        
                 
+        r[i+1] = r[i] + vField*dt + sigma*sqrt(dt)*randr[i];          
         r[i+1] = fabs(r[i+1]);
-//         float rfabsf = fabs(r[i+1]);
         theta[i+1] = theta[i] + 2*M_PI*theta_c * dt;
         
-//         char c3[50]; //size of the number
-//         sprintf(c3, "%g", r[i+1]);
-//         mxArray *Arg12[1];
-//         Arg12[0] = mxCreateString(c3);
-//         mexCallMATLAB(0, NULL, 1, Arg12, "myLogging_c");
-//         
-//         mxArray *Arg13[1];
-//         Arg13[0] = mxCreateString("fabsf");
-//         mexCallMATLAB(0, NULL, 1, Arg13, "myLogging_c");
-//         char c7[50]; //size of the number
-//         sprintf(c7, "%g", rfabsf);
-//         mxArray *Arg14[1];
-//         Arg14[0] = mxCreateString(c7);
-//         mexCallMATLAB(0, NULL, 1, Arg14, "myLogging_c");
     }
 }
 
@@ -127,9 +57,5 @@ void mexFunction(int nlhs, mxArray *plhs[],
     double *theta = mxGetPr(plhs[1]);
     
     fwdSim(minr, maxr, dr, nr, rdot, sigma, theta_c, nMax, dt, randr, r, theta);
-//     mxArray *Arg[1];
-//     Arg[0] = mxCreateString("done with fwdSim c function");
-//     mexCallMATLAB(0, NULL, 1, Arg, "myLogging_c");
-//     _sleep(2000);
 }
 
